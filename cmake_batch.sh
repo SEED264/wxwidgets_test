@@ -21,6 +21,7 @@ cmake_install_path=""
 
 # Dependency dirs
 wxwidgets_root_dir=""
+wxwidgets_root_dir_vs=""
 
 # Launch cmake
 case $mode in
@@ -30,7 +31,7 @@ case $mode in
     cmake .. -G"Visual Studio 16 2019" -A x64 \
         -DCMAKE_PREFIX_PATH=$cmake_prefix_path \
         -DCMAKE_INSTALL_PREFIX=$cmake_install_path \
-        -DwxWidgets_ROOT_DIR=$wxwidgets_root_dir
+        -DwxWidgets_ROOT_DIR=$wxwidgets_root_dir_vs
 ;;
 
 "msys")
@@ -39,7 +40,8 @@ case $mode in
     cmake .. -G"MSYS Makefiles" \
         -DCMAKE_PREFIX_PATH=$cmake_prefix_path \
         -DCMAKE_INSTALL_PREFIX=$cmake_install_path \
-        -DwxWidgets_ROOT_DIR=$wxwidgets_root_dir
+        -DwxWidgets_ROOT_DIR=$wxwidgets_root_dir \
+        -DwxWidgets_CONFIG_EXECUTABLE="${wxwidgets_root_dir}/bin/wx-config"
 ;;
 
 "ninja")
@@ -48,7 +50,8 @@ case $mode in
     cmake .. -G"Ninja" \
         -DCMAKE_PREFIX_PATH=$cmake_prefix_path \
         -DCMAKE_INSTALL_PREFIX=$cmake_install_path \
-        -DwxWidgets_ROOT_DIR=$wxwidgets_root_dir
+        -DwxWidgets_ROOT_DIR=$wxwidgets_root_dir \
+        -DwxWidgets_CONFIG_EXECUTABLE="${wxwidgets_root_dir}/bin/wx-config"
 ;;
 
 "clean")
